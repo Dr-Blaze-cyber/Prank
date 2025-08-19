@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شوخی بامزه</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            direction: rtl;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .button:active {
+            transform: scale(0.95);
+        }
+        .surprise {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            z-index: 1000;
+        }
+        .surprise img {
+            width: 120px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .surprise p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="triggerSurprise()">یه چیزی رو چک کن!</button>
+    </div>
+    <div class="surprise" id="surprise">
+        <img src="https://img.icons8.com/emoji/120/000000/partying-face.png" alt="Party Face">
+        <p> ههه! هک شدی که ملکه من!</p>
+    </div>
+
+    <script>
+        function triggerSurprise() {
+            const surprise = document.getElementById('surprise');
+            surprise.style.display = 'flex';
+            
+            // پخش صدا (اختیاری)
+            const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+            audio.play().catch(error => console.log("خطا در پخش صدا: ", error));
+            
+            // مخفی کردن صفحه شوخی بعد از 3 ثانیه
+            setTimeout(() => {
+                surprise.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
